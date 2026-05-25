@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>FYNDR — Profit Factory · Trading automatizado con Vantage</title>
+<meta name="description" content="Profit Factory: ecosistema de copytrading algorítmico operado en cuentas Vantage. Resultados auditados en myfxbook. +52.85% anual, 8.43% drawdown máximo." />
+<meta name="theme-color" content="#050706" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="styles.css" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23050706'/%3E%3Cpath d='M8 8h16v5H13v3h9v5h-9v3H8z' fill='%232bd47a'/%3E%3C/svg%3E" />
+</head>
+<body>
+
+<div class="cursor" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="ambient" aria-hidden="true">
+  <div class="ambient__a"></div>
+  <div class="ambient__b"></div>
+</div>
+
+<header class="nav">
+  <a href="#top" class="nav__brand" aria-label="FYNDR — inicio">
+    <svg class="mark" viewBox="0 0 40 28" aria-hidden="true">
+      <path d="M2 2h36v7H14v4h20v7H14v4h-12z" fill="currentColor"/>
+      <circle cx="36" cy="4" r="1.2" fill="currentColor" opacity=".55"/>
+    </svg>
+    <span class="nav__wordmark">FYNDR<span class="nav__r">®</span></span>
+  </a>
+
+  <nav class="nav__links" aria-label="Principal">
+    <a href="#manifesto">Manifesto</a>
+    <a href="#resultados">Resultados</a>
+    <a href="#sistema">Cómo opera</a>
+    <a href="#proyeccion">Proyección</a>
+    <a href="#vantage">Vantage</a>
+  </nav>
+
+  <a class="cta cta--ghost nav__cta" href="https://www.vantagemarkets.com" target="_blank" rel="noopener" data-cta="nav">
+    <span>Abrir cuenta</span>
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M5 4h7v7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+  </a>
+</header>
+
+<main id="top">
+
+<!-- ───────────── HERO ───────────── -->
+<section class="hero">
+  <div class="hero__meta">
+    <span class="dot"></span>
+    <span>Sistema en operación · Mercado activo</span>
+    <span class="hero__meta-sep">/</span>
+    <span class="mono">v2026.05</span>
+  </div>
+
+  <div class="hero__grid">
+
+    <div class="hero__copy">
+      <h1 class="display">
+        <span class="display__line" data-reveal>Profit</span>
+        <span class="display__line" data-reveal>
+          <em>Factory.</em>
+        </span>
+      </h1>
+
+      <p class="hero__lede" data-reveal>
+        Trading algorítmico, ejecutado las 24h en tu propia cuenta de
+        <strong>Vantage Markets</strong>. Sin tocar el ratón. Sin tomar la
+        decisión equivocada un martes a las 3:14&nbsp;am.
+      </p>
+
+      <div class="hero__actions" data-reveal>
+        <a class="cta cta--solid" href="https://www.vantagemarkets.com" target="_blank" rel="noopener" data-cta="hero-primary">
+          <span>Abrir cuenta con Vantage</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="cta cta--ghost" href="#resultados" data-cta="hero-secondary">
+          Ver resultados auditados
+        </a>
+      </div>
+
+      <dl class="hero__stats" data-reveal>
+        <div>
+          <dt>Anual logrado</dt>
+          <dd><span class="num" data-count="52.85" data-decimals="2">0.00</span><span class="unit">%</span></dd>
+        </div>
+        <div>
+          <dt>Drawdown máx.</dt>
+          <dd><span class="num" data-count="8.43" data-decimals="2">0.00</span><span class="unit">%</span></dd>
+        </div>
+        <div>
+          <dt>Win rate</dt>
+          <dd><span class="num" data-count="83">0</span><span class="unit">%</span></dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Animated chart visual -->
+    <figure class="hero__viz" aria-label="Visualización del sistema operando en tiempo real">
+      <div class="viz">
+        <div class="viz__chrome">
+          <span class="viz__dot" style="background:#ff5f57"></span>
+          <span class="viz__dot" style="background:#febc2e"></span>
+          <span class="viz__dot" style="background:#28c840"></span>
+          <span class="viz__title mono">profit-factory · live</span>
+          <span class="viz__pulse">
+            <span class="pulse"></span>
+            LIVE
+          </span>
+        </div>
+
+        <div class="viz__head">
+          <div>
+            <div class="viz__label mono">EURUSD · M15</div>
+            <div class="viz__price"><span class="mono" id="livePrice">1.08742</span><span class="viz__delta">+0.034%</span></div>
+          </div>
+          <div class="viz__pl">
+            <div class="viz__label mono">P/L sesión</div>
+            <div class="viz__plv mono" id="pnlValue">+$1,284.40</div>
+          </div>
+        </div>
+
+        <svg class="viz__chart" viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="gridFade" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#2bd47a" stop-opacity=".18"/>
+              <stop offset="1" stop-color="#2bd47a" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="lineGrad" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#2bd47a" stop-opacity=".0"/>
+              <stop offset=".3" stop-color="#2bd47a" stop-opacity=".8"/>
+              <stop offset="1" stop-color="#a7ffce" stop-opacity="1"/>
+            </linearGradient>
+            <filter id="glow"><feGaussianBlur stdDeviation="2.5"/></filter>
+          </defs>
+
+          <!-- horizontal grid -->
+          <g stroke="rgba(255,255,255,.05)" stroke-dasharray="2 4">
+            <line x1="0" y1="52" x2="600" y2="52"/>
+            <line x1="0" y1="104" x2="600" y2="104"/>
+            <line x1="0" y1="156" x2="600" y2="156"/>
+            <line x1="0" y1="208" x2="600" y2="208"/>
+          </g>
+
+          <!-- equity area -->
+          <path id="equityArea" d="" fill="url(#gridFade)"/>
+          <path id="equityLine" d="" stroke="url(#lineGrad)" stroke-width="1.6" fill="none"/>
+          <path id="equityGlow" d="" stroke="#2bd47a" stroke-width="2.2" fill="none" filter="url(#glow)" opacity=".55"/>
+
+          <!-- candles group, injected via JS -->
+          <g id="candles"></g>
+
+          <!-- now indicator -->
+          <g id="nowIndicator">
+            <line x1="540" y1="0" x2="540" y2="260" stroke="#2bd47a" stroke-width="1" stroke-dasharray="3 3" opacity=".5"/>
+            <circle cx="540" cy="80" r="4" fill="#2bd47a"/>
+            <circle cx="540" cy="80" r="10" fill="none" stroke="#2bd47a" stroke-width="1" opacity=".4">
+              <animate attributeName="r" from="4" to="18" dur="2.2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" from=".7" to="0" dur="2.2s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+        </svg>
+
+        <ul class="viz__feed mono" aria-live="polite">
+          <li><span class="tick up">BUY</span> EURUSD 0.45 @ 1.0871 → <span class="up">+$184</span></li>
+          <li><span class="tick up">SELL</span> XAUUSD 0.12 @ 2334.8 → <span class="up">+$420</span></li>
+          <li><span class="tick dn">SELL</span> GBPUSD 0.30 @ 1.2719 → <span class="dn">−$62</span></li>
+          <li><span class="tick up">BUY</span> US500 1.20 @ 5318.4 → <span class="up">+$742</span></li>
+        </ul>
+      </div>
+
+      <figcaption class="hero__cap mono">
+        Visualización ilustrativa · Datos auditados disponibles en myfxbook
+      </figcaption>
+    </figure>
+
+  </div>
+
+  <a class="hero__scroll" href="#manifesto" aria-label="Continuar leyendo">
+    <span>Desplázate</span>
+    <svg viewBox="0 0 12 32" aria-hidden="true"><path d="M6 2v26m-4-4 4 4 4-4" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+  </a>
+</section>
+
+
+<!-- ───────────── MANIFESTO ───────────── -->
+<section class="manifesto" id="manifesto">
+  <div class="section__head">
+    <span class="eyebrow mono">01 — Manifesto</span>
+    <h2 class="section__title" data-reveal-words>
+      El acceso a los mercados nunca había sido tan accesible &mdash; y nunca había
+      pedido tan poco a quien empieza.
+    </h2>
+  </div>
+
+  <div class="manifesto__body">
+    <div class="manifesto__col">
+      <p>
+        Profit Factory es un ecosistema de copytrading algorítmico que conecta a
+        sus usuarios con operativa profesional directamente desde sus propias
+        cuentas. No necesitas experiencia en trading, ni tomar decisiones
+        manuales.
+      </p>
+      <p class="muted">
+        El sistema opera las 24 horas durante el horario de mercado activo, con
+        ejecución completamente automatizada y gestión de riesgo estructurada
+        desde el primer día.
+      </p>
+    </div>
+
+    <aside class="manifesto__pull">
+      <p>
+        “Buscamos resultados <em>consistentes</em> con gestión de riesgo real
+        — no rendimientos agresivos a cualquier costo.”
+      </p>
+      <footer>— FYNDR</footer>
+    </aside>
+  </div>
+</section>
+
+
+<!-- ───────────── RESULTADOS / STATS ───────────── -->
+<section class="results" id="resultados">
+  <div class="section__head">
+    <span class="eyebrow mono">02 — Resultados verificados</span>
+    <h2 class="section__title">
+      Datos públicos. Auditados en tiempo real por
+      <a class="ulink" href="https://www.myfxbook.com" target="_blank" rel="noopener">myfxbook</a>.
+    </h2>
+  </div>
+
+  <div class="results__grid">
+    <article class="stat stat--xl">
+      <div class="stat__top">
+        <span class="eyebrow mono">Rendimiento anual</span>
+        <span class="mono dim">2025 / 2026</span>
+      </div>
+      <div class="stat__value">
+        <span class="num" data-count="52.85" data-decimals="2">0.00</span>
+        <span class="unit">%</span>
+      </div>
+      <div class="stat__delta up mono">↗ +52.85% YTD</div>
+    </article>
+
+    <article class="stat">
+      <span class="eyebrow mono">Drawdown máximo</span>
+      <div class="stat__value"><span class="num" data-count="8.43" data-decimals="2">0.00</span><span class="unit">%</span></div>
+      <p class="stat__note">Riesgo real, no asumido.</p>
+    </article>
+
+    <article class="stat">
+      <span class="eyebrow mono">Win rate</span>
+      <div class="stat__value"><span class="num" data-count="83">0</span><span class="unit">%</span></div>
+      <p class="stat__note">486 trades · 403 ganados · 83 perdidos</p>
+    </article>
+
+    <article class="stat stat--wide">
+      <span class="eyebrow mono">Trades ejecutados</span>
+      <div class="stat__value">
+        <span class="num" data-count="486">0</span>
+      </div>
+
+      <div class="bars">
+        <div class="bars__row">
+          <span class="bars__label mono">Ganados</span>
+          <div class="bars__track"><div class="bars__fill" data-fill="83">
+            <span class="bars__value mono">403</span>
+          </div></div>
+        </div>
+        <div class="bars__row">
+          <span class="bars__label mono">Perdidos</span>
+          <div class="bars__track"><div class="bars__fill bars__fill--dim" data-fill="17">
+            <span class="bars__value mono">83</span>
+          </div></div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <p class="footnote mono">
+    Los rendimientos pasados no garantizan rendimientos futuros. Toda la operativa
+    se realiza desde cuentas personales reguladas por Vantage Markets.
+  </p>
+</section>
+
+
+<!-- ───────────── PILARES ───────────── -->
+<section class="pillars" id="sistema">
+  <div class="section__head">
+    <span class="eyebrow mono">03 — Cómo opera</span>
+    <h2 class="section__title">
+      Tres principios. Cero improvisación.
+    </h2>
+  </div>
+
+  <ol class="pillars__list">
+    <li class="pillar">
+      <span class="pillar__idx mono">P/01</span>
+      <h3>Automatización</h3>
+      <p>
+        Algoritmos ejecutando estrategias 24/5 sobre la cuenta del usuario.
+        El sistema entra, sale y dimensiona cada posición. Sin emoción.
+      </p>
+    </li>
+    <li class="pillar">
+      <span class="pillar__idx mono">P/02</span>
+      <h3>Disciplina</h3>
+      <p>
+        Gestión de riesgo definida antes de cada trade. Drawdown contenido por
+        diseño, no por suerte. Cada decisión tiene un límite calculado.
+      </p>
+    </li>
+    <li class="pillar">
+      <span class="pillar__idx mono">P/03</span>
+      <h3>Tecnología</h3>
+      <p>
+        Ejecución de hasta 2&nbsp;ms sobre la infraestructura de Vantage —
+        broker global regulado por ASIC, FCA y FSCA con presencia en
+        +170&nbsp;países.
+      </p>
+    </li>
+  </ol>
+</section>
+
+
+<!-- ───────────── 4 PASOS ───────────── -->
+<section class="steps">
+  <div class="section__head">
+    <span class="eyebrow mono">04 — Empezar</span>
+    <h2 class="section__title">Cuatro pasos. Una tarde.</h2>
+  </div>
+
+  <ol class="steps__list">
+    <li class="step" data-step="01">
+      <div class="step__num mono">01</div>
+      <div class="step__body">
+        <h3>Regístrate</h3>
+        <p>Abre tu cuenta a tu nombre en Vantage Markets — nuestro broker aliado.</p>
+      </div>
+      <div class="step__deco">
+        <svg viewBox="0 0 80 80" aria-hidden="true">
+          <rect x="14" y="10" width="52" height="60" rx="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="22" y1="24" x2="58" y2="24" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="22" y1="34" x2="46" y2="34" stroke="currentColor" stroke-width="1.2"/>
+          <rect x="22" y="46" width="36" height="16" rx="3" fill="currentColor" opacity=".18"/>
+        </svg>
+      </div>
+    </li>
+    <li class="step" data-step="02">
+      <div class="step__num mono">02</div>
+      <div class="step__body">
+        <h3>Fondea</h3>
+        <p>Deposita el capital que quieras operar. Solo tú tienes acceso a esos fondos.</p>
+      </div>
+      <div class="step__deco">
+        <svg viewBox="0 0 80 80" aria-hidden="true">
+          <circle cx="40" cy="40" r="26" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M40 24v32M32 30h16m-16 20h16M34 38h12M34 46h12" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+      </div>
+    </li>
+    <li class="step" data-step="03">
+      <div class="step__num mono">03</div>
+      <div class="step__body">
+        <h3>Conecta con FYNDR</h3>
+        <p>Vinculas tu cuenta a la estrategia con un proceso simple y directo.</p>
+      </div>
+      <div class="step__deco">
+        <svg viewBox="0 0 80 80" aria-hidden="true">
+          <circle cx="22" cy="40" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="58" cy="40" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M28 40h24M22 34l-8-6m8 18-8 6m44-18 8-6m-8 18 8 6" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+      </div>
+    </li>
+    <li class="step" data-step="04">
+      <div class="step__num mono">04</div>
+      <div class="step__body">
+        <h3>Operación activa</h3>
+        <p>El sistema empieza a operar. Tú vigilas tu balance, no la gráfica.</p>
+      </div>
+      <div class="step__deco">
+        <svg viewBox="0 0 80 80" aria-hidden="true">
+          <path d="M10 60 L24 44 L36 52 L52 28 L70 38" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="52" cy="28" r="3" fill="currentColor"/>
+        </svg>
+      </div>
+    </li>
+  </ol>
+</section>
+
+
+<!-- ───────────── PROYECCIÓN / CALCULADORA ───────────── -->
+<section class="proj" id="proyeccion">
+  <div class="section__head section__head--split">
+    <div>
+      <span class="eyebrow mono">05 — Proyección al futuro</span>
+      <h2 class="section__title">
+        Capitalización compuesta sobre escenarios reales.
+      </h2>
+    </div>
+    <p class="section__sub">
+      Bajo el supuesto de reinversión total a tasas mensuales promedio. Los
+      rendimientos pasados no garantizan los futuros.
+    </p>
+  </div>
+
+  <div class="proj__panel">
+    <div class="proj__controls">
+      <label class="field">
+        <span class="field__label mono">Capital inicial · USD</span>
+        <div class="field__input">
+          <span class="field__prefix mono">$</span>
+          <input id="capital" type="number" min="500" step="500" value="10000" inputmode="numeric" />
+        </div>
+        <input id="capitalRange" type="range" min="1000" max="500000" step="1000" value="10000" />
+      </label>
+
+      <div class="field field--toggle">
+        <span class="field__label mono">Escenario mensual</span>
+        <div class="toggle" role="tablist">
+          <button class="toggle__btn is-active" role="tab" data-rate="3.5">Conservador · 3.5%</button>
+          <button class="toggle__btn" role="tab" data-rate="5">Objetivo · 5.0%</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj__table">
+      <div class="proj__head mono">
+        <span>Horizonte</span>
+        <span>Balance proyectado</span>
+        <span>Ganancia</span>
+        <span>Rendimiento</span>
+      </div>
+
+      <div class="proj__rows" id="projRows"></div>
+    </div>
+
+    <div class="proj__cta">
+      <a class="cta cta--solid" href="https://www.vantagemarkets.com" target="_blank" rel="noopener" data-cta="proj">
+        <span>Empezar con este capital</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ───────────── VANTAGE / TRUST ───────────── -->
+<section class="vantage" id="vantage">
+  <div class="vantage__grid">
+
+    <div class="vantage__copy">
+      <span class="eyebrow mono">06 — Infraestructura</span>
+      <h2 class="section__title">
+        Operamos sobre <span class="hl">Vantage Markets</span>.
+        Tu dinero, tu cuenta, tu nombre.
+      </h2>
+      <p>
+        Cada usuario mantiene control total sobre su capital desde su cuenta
+        personal. Profit Factory no recibe fondos ni administra capital de
+        terceros.
+      </p>
+      <p class="muted">
+        Nuestro modelo es simple: <strong>solo cobramos si tú ganas</strong>.
+      </p>
+
+      <a class="cta cta--solid" href="https://www.vantagemarkets.com" target="_blank" rel="noopener" data-cta="vantage">
+        <span>Abrir cuenta en Vantage</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <ul class="badges">
+      <li>
+        <span class="mono dim">Regulación</span>
+        <strong>ASIC · FCA · FSCA</strong>
+        <span class="muted">Tres jurisdicciones de nivel tier-1.</span>
+      </li>
+      <li>
+        <span class="mono dim">Presencia</span>
+        <strong>+170 países</strong>
+        <span class="muted">Operativa transfronteriza.</span>
+      </li>
+      <li>
+        <span class="mono dim">Ejecución</span>
+        <strong>Hasta 2 ms</strong>
+        <span class="muted">Spreads reducidos, depósitos y retiros rápidos.</span>
+      </li>
+      <li class="badges__ferrari">
+        <span class="mono dim">Partnership</span>
+        <strong>Scuderia Ferrari HP</strong>
+        <span class="muted">Vantage es Official Partner del equipo Ferrari en F1.</span>
+      </li>
+    </ul>
+
+  </div>
+</section>
+
+
+<!-- ───────────── CTA FINAL ───────────── -->
+<section class="end">
+  <div class="end__mark" aria-hidden="true">
+    <svg viewBox="0 0 200 140">
+      <path d="M10 10h180v30H50v20h130v30H50v20h140v30H10z" fill="currentColor"/>
+      <circle cx="184" cy="14" r="3" fill="currentColor" opacity=".5"/>
+    </svg>
+  </div>
+
+  <h2 class="end__title">
+    Una nueva forma de <em>vivir</em> el trading.
+  </h2>
+  <p class="end__sub">
+    Profit Factory combina tecnología, automatización y herramientas
+    profesionales para una experiencia moderna y accesible.
+  </p>
+
+  <a class="cta cta--solid cta--xl" href="https://www.vantagemarkets.com" target="_blank" rel="noopener" data-cta="end">
+    <span>Abrir cuenta con Vantage</span>
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
+  <div class="end__social mono">
+    <a href="https://instagram.com/fyndr_crypto" target="_blank" rel="noopener">@fyndr_crypto</a>
+    <span>·</span>
+    <a href="https://instagram.com/vantagemarkets" target="_blank" rel="noopener">@vantagemarkets</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__cols">
+    <div>
+      <div class="foot__brand">
+        <svg class="mark" viewBox="0 0 40 28" aria-hidden="true">
+          <path d="M2 2h36v7H14v4h20v7H14v4h-12z" fill="currentColor"/>
+          <circle cx="36" cy="4" r="1.2" fill="currentColor" opacity=".55"/>
+        </svg>
+        <span>FYNDR®</span>
+      </div>
+      <p class="muted">Profit Factory — ecosistema de trading automatizado, operado sobre Vantage Markets.</p>
+    </div>
+
+    <div>
+      <span class="eyebrow mono">Producto</span>
+      <a href="#resultados">Resultados</a>
+      <a href="#sistema">Cómo opera</a>
+      <a href="#proyeccion">Proyección</a>
+    </div>
+
+    <div>
+      <span class="eyebrow mono">Broker</span>
+      <a href="https://www.vantagemarkets.com" target="_blank" rel="noopener">Vantage Markets ↗</a>
+      <a href="https://www.myfxbook.com" target="_blank" rel="noopener">myfxbook ↗</a>
+    </div>
+
+    <div>
+      <span class="eyebrow mono">Contacto</span>
+      <a href="https://instagram.com/fyndr_crypto" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:hola@fyndr.app">hola@fyndr.app</a>
+    </div>
+  </div>
+
+  <div class="foot__legal mono">
+    <span>© 2026 FYNDR®. Todos los derechos reservados.</span>
+    <span>El trading conlleva riesgo de pérdida. Opera sólo capital que puedas permitirte perder.</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js" defer></script>
+
+</body>
+</html>
