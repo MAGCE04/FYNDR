@@ -17,13 +17,16 @@
       smoothWheel: true,
       smoothTouch: false,
     });
-    const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
-    requestAnimationFrame(raf);
 
+    // Single raf driver — prefer gsap.ticker when available to keep
+    // ScrollTrigger and Lenis in sync; otherwise fall back to rAF.
     if (window.gsap && window.ScrollTrigger) {
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add(t => lenis.raf(t * 1000));
       gsap.ticker.lagSmoothing(0);
+    } else {
+      const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+      requestAnimationFrame(raf);
     }
   }
 
